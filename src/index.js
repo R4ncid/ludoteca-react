@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider, } from 'react-redux'
+import {Provider,} from 'react-redux'
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,12 +14,28 @@ import Login from "./pages/Login";
 import * as serviceWorker from './serviceWorker';
 import Navbar from "./components/Navbar";
 import NuovaAnagrafica from "./pages/NuovaAnagrafica";
+import PrivateRoute from "./components/PrivateRoute";
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <Navbar/>
-            <NuovaAnagrafica/>
+            <Switch>
+                    <PrivateRoute path={'/anagrafica/nuova'} >
+                        <NuovaAnagrafica/>
+                    </PrivateRoute>
+
+
+                    <PrivateRoute path={'/anagrafica'}>
+                        <Navbar title={'Ludoteca | Lista Anagrafiche'}/>
+                    </PrivateRoute>
+                <Route path={'/login'}>
+                    <Login/>
+                </Route>
+                <PrivateRoute path={'/'}>
+                    <Navbar/>
+                </PrivateRoute>
+
+            </Switch>
         </Router>
     </Provider>
     , document.getElementById('root'));

@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +17,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import PeopleIcon from "@material-ui/icons/People";
+import {NavLink, Redirect} from "react-router-dom";
+import ListItemLink from "./ListItemLink";
 
 const drawerWidth = 240;
 
@@ -76,7 +79,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft({title = 'Ludoteca'}) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -91,7 +94,7 @@ export default function PersistentDrawerLeft() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
@@ -106,10 +109,10 @@ export default function PersistentDrawerLeft() {
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Ludoteca
+                        {title}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -124,24 +127,36 @@ export default function PersistentDrawerLeft() {
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
                     </IconButton>
                 </div>
-                <Divider />
+                <Divider/>
                 <List>
+                    <ListItemLink
+                        button
+                        to={'/anagrafica'}
+                        primary={"Lista anagrafiche"}
+                        icon={<PeopleIcon/>}
+                    />
+                    <ListItemLink
+                        button
+                        to={'/anagrafica/nuova'}
+                        primary={"Nuova anagrafica"}
+                        icon={<PeopleIcon/>}
+                    />
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
+                <Divider/>
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
                         </ListItem>
                     ))}
                 </List>

@@ -1,12 +1,14 @@
+import {combineReducers} from "redux";
 import {LOGGED_IN} from "../action/login";
+import anagrafica from "./anagrafica";
 
 const initialState = {
     user: localStorage.getItem('user') || {},
-    loggedIn: !!localStorage.getItem('user')
+    loggedIn: !!localStorage.getItem('user') || false
 };
 
 
-export default (state=initialState, action) => {
+export const login  =  (state=initialState, action) => {
 
     if(action.type === LOGGED_IN){
         return {
@@ -18,3 +20,5 @@ export default (state=initialState, action) => {
 
     return state
 }
+
+export default combineReducers({login, anagrafica})

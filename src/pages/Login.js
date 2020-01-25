@@ -12,8 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../store/action/login";
+import {Redirect} from "react-router-dom";
 
 function Copyright() {
     return (
@@ -55,6 +56,8 @@ export default props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const user = useSelector(state => state.login.loggedIn);
+
     const handleSubmit = event => {
         console.log(email, password);
         dispatch(login({email, password}))
@@ -62,7 +65,7 @@ export default props => {
 
     }
 
-    return (
+    return user ? <Redirect  to={'/'}/> :(
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
