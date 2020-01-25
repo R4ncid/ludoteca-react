@@ -3,8 +3,8 @@ import {LOGGED_IN} from "../action/login";
 import anagrafica from "./anagrafica";
 
 const initialState = {
-    user: localStorage.getItem('user') || {},
-    loggedIn: !!localStorage.getItem('user') || false
+    user:  {},
+    loggedIn:  false
 };
 
 
