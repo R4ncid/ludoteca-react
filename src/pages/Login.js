@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../store/action/login";
+import {login} from "../store/action/auth";
 import {Redirect} from "react-router-dom";
 
 function Copyright() {
@@ -56,13 +56,11 @@ export default props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const user = useSelector(state => state.login.loggedIn);
+    const user = useSelector(state => state.auth.loggedIn);
 
     const handleSubmit = event => {
-        console.log(email, password);
         dispatch(login({email, password}))
         event.preventDefault();
-
     }
 
     return user ? <Redirect  to={'/'}/> :(

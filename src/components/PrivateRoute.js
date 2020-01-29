@@ -4,7 +4,7 @@ import {Redirect, Route} from "react-router-dom";
 
 export default ({children, ...rest}) => {
 
-    const user = useSelector(state => state.login.loggedIn)
+    const user = useSelector(state => state.auth.loggedIn)
     console.log(user)
     return <Route {...rest}>
         {user

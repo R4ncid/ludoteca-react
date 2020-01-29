@@ -1,24 +1,7 @@
 import {combineReducers} from "redux";
-import {LOGGED_IN} from "../action/login";
+
 import anagrafica from "./anagrafica";
-
-const initialState = {
-    user:  {},
-    loggedIn:  false
-};
+import auth from "./auth";
 
 
-export const login  =  (state=initialState, action) => {
-
-    if(action.type === LOGGED_IN){
-        return {
-            ...state,
-            user: action.user,
-            loggedIn: true
-        }
-    }
-
-    return state
-}
-
-export default combineReducers({login, anagrafica})
+export default combineReducers({auth, anagrafica})
