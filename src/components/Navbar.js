@@ -20,6 +20,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import PeopleIcon from "@material-ui/icons/People";
 import {NavLink, Redirect} from "react-router-dom";
 import ListItemLink from "./ListItemLink";
+import {Container} from "@material-ui/core";
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
 
 const drawerWidth = 240;
 
@@ -144,6 +146,18 @@ export default function PersistentDrawerLeft({title = 'Ludoteca'}) {
                         primary={"Nuova anagrafica"}
                         icon={<PeopleIcon/>}
                     />
+                    <ListItemLink
+                        button
+                        to={'/presenze/nuova'}
+                        primary={"Nuova Presenza"}
+                        icon={<PeopleIcon/>}
+                    />
+                    <ListItemLink
+                        button
+                        to={'/presenze'}
+                        primary={"Lista Presenze"}
+                        icon={<PeopleIcon/>}
+                    />
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
@@ -165,3 +179,11 @@ export default function PersistentDrawerLeft({title = 'Ludoteca'}) {
         </div>
     );
 }
+
+export const withNavbar =  title => Component => props => <div>
+    <PersistentDrawerLeft title={title} />
+    <Container style={{marginTop: '70px'}}>
+        <Component {...props}/>
+    </Container>
+    </div>
+

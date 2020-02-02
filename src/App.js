@@ -4,6 +4,9 @@ import NuovaAnagrafica from "./pages/NuovaAnagrafica";
 import Navbar from "./components/Navbar";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Login from "./pages/Login";
+import PresenzaNuova from "./pages/PresenzaNuova";
+import Presenze from "./pages/Presenze";
+import ListaAnagrafica from "./pages/ListaAnagrafiche";
 
 function App() {
     return (
@@ -13,7 +16,14 @@ function App() {
                     <NuovaAnagrafica/>
                 </PrivateRoute>
                 <PrivateRoute path={'/anagrafica'}>
-                    <Navbar title={'Ludoteca | Lista Anagrafiche'}/>
+                    <ListaAnagrafica />
+                </PrivateRoute>
+                <PrivateRoute path={'/presenze/nuova'}>
+                    <PresenzaNuova/>
+                </PrivateRoute>
+                <PrivateRoute path={'/presenze'}>
+                    <Navbar title={'Ludoteca | Presenze'}/>
+                    <Presenze/>
                 </PrivateRoute>
                 <Route path={'/login'}>
                     <Login/>

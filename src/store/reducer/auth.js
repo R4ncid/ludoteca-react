@@ -1,8 +1,8 @@
 import {LOGGED_IN} from "../action/auth";
 
 const initialState = {
-    user:  {},
-    loggedIn:  false
+    user:  localStorage.getItem("user") || {},
+    loggedIn:  !!localStorage.getItem("user")
 };
 
 
